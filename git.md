@@ -37,7 +37,9 @@ Git has 3 internal structure or trees
 ## Collaboration 
 * Collaboration with remote repository setup , it needs to added on your local git config
 Usually remote repo setup include github, gitlab, bitbucket, aws codecommit, azure repos, gcp csr
+
 `origin is the remote_name below`
+
 ` git remote add origin <remote_repo_url>`
 
 * Pushing changes from local reposiroty to remote repository
@@ -72,6 +74,16 @@ it has three line arguments --soft, --mixed, --hard
 The git reset command is used to undo a commit or staged snapshot. it moves both HEAD and main to the reset point.
 Default command means `git reset` means `git reset --mixed HEAD`
 
-This is the most direct, DANGEROUS, and frequently used option. When passed --hard The Commit History ref pointers are updated to the specified commit. Then, the Staging Index and Working Directory are reset to match that of the specified commit
+* Undo the last commit, but keep changes staged: 
+
+`git reset --soft HEAD~1`
+
+* Undo the last commit, unstage changes but keep files
+
+`git reset --mixed HEAD~1`
+
+* Undo the last commit, delete changes completely, --hard permanently deletes changes from both staging and working directory
+
+`git reset --hard HEAD~1`
 
 
