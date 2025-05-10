@@ -5,11 +5,13 @@
 
 2. Implement Q1 using ansible playbook
 
-3. Use ansible to create 2 VMs on aws(1 Ubuntu, 1 Centos)
+3. Use ansible to create 2 VMs on aws(1 Ubuntu, 1 Centos, 1 windows)
 
-4. On the Ubuntu server:
+4. Use ansible to create 5 users on the windows server 
+
+5. On the Ubuntu server:
     Use ansible to install mysql , update packages  and create a dataase(name=login_db)
     Create a database user with password
 
-5. On the Centos server
+6. On the Centos server
     Use ansible to install nginx, ensure the nginx is running
