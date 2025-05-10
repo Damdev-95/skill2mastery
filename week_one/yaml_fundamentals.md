@@ -1,24 +1,20 @@
-YAML Basics: A Practical Guide
+## YAML Basics
+
 YAML (YAML Ain’t Markup Language) is a human-readable data serialization format often used for configuration files and data exchange between languages with different data structures.
 
-Why YAML?
-Clean and easy to read
+# Why YAML?
 
-Widely used in tools like Docker, Kubernetes, Ansible, GitHub Actions, and Terraform
+* Clean and easy to read
+* Widely used in tools like Docker, Kubernetes, Ansible, GitHub Actions, and Terraform
+* Supports complex data structures: lists, maps, and nesting
+* Language-agnostic
 
-Supports complex data structures: lists, maps, and nesting
+# YAML Syntax Rules
 
-Language-agnostic
-
-YAML Syntax Rules
-
-Uses indentation for structure (spaces only, no tabs)
-
-Key-value pairs are separated by :
-
-Lists are denoted by -
-
-Comments start with #
+* Uses indentation for structure (spaces only, no tabs)
+* Key-value pairs are separated by :
+* Lists are denoted by -
+* Comments start with #
 
 ## Basic Data Types
 
