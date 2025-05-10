@@ -9,6 +9,7 @@
 
 4. On the Ubuntu server:
     Use ansible to install mysql , update packages  and create a dataase(name=login_db)
+    Create a database user with password
 
 5. On the Centos server
-    Use ansible to install nginx, ensure the app is working
+    Use ansible to install nginx, ensure the nginx is running
