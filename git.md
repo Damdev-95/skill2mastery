@@ -38,12 +38,90 @@ Git has 3 internal structure or trees
 * Collaboration with remote repository setup , it needs to added on your local git config
 Usually remote repo setup include github, gitlab, bitbucket, aws codecommit, azure repos, gcp csr
 
+The `git remote` command is essentially an interface for managing a list of remote entries that are stored in the repository
+
+`git remote -v to get verbose details`
+
 `origin is the remote_name below`
 
 ` git remote add origin <remote_repo_url>`
 
+ `git fetch origin`
+
+This wil download the remote content but not update your local repo's working state, leaving your current work intact
+then you inspect and merge to your working branch
+
+```
+git log origin/main
+git merge origin/main
+```
+
+ This automatically update your local repo's working state.
+ 
+ `git pull origin main`
+
+
 * Pushing changes from local reposiroty to remote repository
 `git push -u origin <local_branch_name>`
+
+`git branch`
+
+This will output a list of the local branch refs ./.git/refs/heads/
+
+`git branch -r `
+
+This stores the list of branches from the remote ./.git/refs/remotes/
+
+`git branch <branch_name>`
+
+This create a new branch but does not checkout to it 
+
+`git checkout <branch_name>`
+
+This is for switching brannches  , -b for creating new branch and switch to it.
+
+`git branch -d <branch_name>`
+
+This prevents from deleting the branch if it has unmerged changes, while -D doesn't mind
+
+`git push origin --delete crazy-experiment`
+
+This is used to delete a remote branch
+
+git branch -m <branch>
+
+To rename branch and git branch -a to list all branches
+
+`git push <remote> <branch>`
+
+## Git Merge
+git merge is used to combine two branches
+Steps invloved in merging branch
+# Start a new feature
+git checkout -b new-feature main
+# Edit some files
+git add <file>
+git commit -m "Start a feature"
+# Edit some files
+git add <file>
+git commit -m "Finish a feature"
+# Merge in the new-feature branch
+git checkout main
+git merge new-feature
+git branch -d new-feature
+
+
+## Makking Pull requests
+
+```
+git clone https://username/test-projects.git
+# Note that git clone automatically creates an origin remote that points to this repo_url
+
+git checkout -b new-feature
+git add new file
+git commit -m "Adding new branch and new feature"
+git push origin new-feature
+```
 
 
 ## Undoing changes
