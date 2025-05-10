@@ -30,6 +30,10 @@ Host db-server
 ```
 ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote-server
+# Or manually:
+cat ~/.ssh/id_rsa.pub | ssh username@remote-server "cat >> ~/.ssh/authorized_keys"
 ```
 
 * Update variables on ansible.cfg
