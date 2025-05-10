@@ -189,6 +189,34 @@ fi
 
 ```
 
+## Another Example
+
+```
+echo “nameserver 10.1.250.10” >> /etc/resolv.conf
+```
+## What if I want to do this on 30 servers, do i need to login to each of them ????
+
+```
+-
+  name: Add DNS server to resolv.conf
+  hosts: localhost
+  tasks:
+   - lineinfile: 
+       path: /etc/resolv.conf
+       line: 'nameserver 10.1.250.10'
+```
+
+```
+-
+  name: Run commands on virtual machines
+  hosts: localhost
+  tasks:
+    - name: Execute command ‘date’
+      command: date
+    - name: Display resolv.conf contents
+      command: cat/etc/resolv.conf
+```
+
 # Components
 * Playbook(yaml)
 * Inventory file (ini or yaml)
