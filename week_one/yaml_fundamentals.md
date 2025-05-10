@@ -23,6 +23,7 @@ Comments start with #
 ## Basic Data Types
 
 # Strings
+```
 
 name: John Doe
 city: "New York"
@@ -30,6 +31,8 @@ quote: 'YAML is great!'
 multiline: |
   This is a multiline string.
   Each line will be preserved.
+
+```
 
 
 # Numbers
