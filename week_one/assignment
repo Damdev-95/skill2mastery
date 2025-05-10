@@ -8,7 +8,7 @@
 3. Use ansible to create 2 VMs on aws(1 Ubuntu, 1 Centos)
 
 4. On the Ubuntu server:
-    Use ansible to install postgresql , update packages  and create a dataase(name=Application)
+    Use ansible to install mysql , update packages  and create a dataase(name=Application)
 
 5. On the Centos server
-    Use ansible to install apache, ensure the app is working
+    Use ansible to install nginx, ensure the app is working
