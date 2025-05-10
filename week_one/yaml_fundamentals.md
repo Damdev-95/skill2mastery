@@ -49,10 +49,12 @@ height: 5.9
 
 # Lists
 
-# languages:
+```
+languages:
   - Python
   - JavaScript
   - Go
+```
 
 # List of Dictionaries (Objects)
 
