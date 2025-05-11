@@ -5,7 +5,7 @@
 
 2. Implement Q1 using ansible playbook
 
-3. Use ansible to create 2 VMs on aws(1 Ubuntu, 1 Centos, 1 windows)
+3. Use ansible to create 3 VMs on aws(1 Ubuntu, 1 Centos, 1 windows)
 
 4. Use ansible to create 5 users on the windows server
 
