@@ -10,5 +10,8 @@
 
 # Regions and Availability Zone
 
+* Regions -- two or more AZs (us-east-1, eu-west-1), Geographically Seperated.
+* Avalaibbitiy -- One or more data centers (us-east-1a)
+
 
 
