@@ -224,6 +224,11 @@ echo “nameserver 10.1.250.10” >> /etc/resolv.conf
 
 <img width="459" alt="image" src="https://github.com/user-attachments/assets/98e53dff-c988-4166-b10e-64d68d28de34" />
 
+# Further materials for ansible
+
+* [Ansible-for-Real-life-Automation](https://github.com/PacktPublishing/Ansible-for-Real-life-Automation)
+* [Mastering-Ansible-Fourth-Edition](https://github.com/PacktPublishing/Mastering-Ansible-Fourth-Edition)
+* KodeKloud
 
 # Kubernetes Deploymnet file
 
