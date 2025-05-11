@@ -84,6 +84,88 @@ This is a string over
 three lines
         with the third line indented
 ```
+
+# USING MAIN FUNCTION
+When this code is run, the interpreter will define a special variable called __name__ and assign the value of "__main__" to the code in this python file. So the code in our python file becomes __name__ == "__main__".
+
+When we use import statements, we can import code from other files into our python program. When this happens, the imported code is set a __name__ value of the modules name.
+
+By setting the __name__=="__main__" we can control the order in which the code in this file is executed, telling python to run the code in this file which has the name of __main__ rather than the code imported from another file. This avoids situations where your code could run an imported script, resulting in unwanted behavior.
+
+We do this using an if statement. If statements are covered in more detail later. At this stage, all you need to understand is that it is telling the python interpreter that if the __name__ is equal to __main__ which relates to the code in this python file, then run the main() function.
+
+The main() function therefore sets the start point for our code to control the order in which our code executes. It is conventional to include all the calls to your functions within the main() function. This will help others to read your code and understand the logic and flow
+
+```
+import sys
+
+def doubler(number):
+    """
+    Given a number, double it and return the value
+    """
+    result = number * 2
+    return result
+
+
+# Entry point for program
+if __name__ == '__main__':
+    # Retrieve command line input
+    try:
+        input = float(sys.argv[1])
+    except (IndexError, ValueError) as e:
+        # Indicates no command line parameter was provided
+        print("You must provide a number as a parameter to this script")
+        print("Example: ")
+        print("  python example1.py 12")
+        sys.exit(1)
+
+    # Double the provided number and print output
+    answer = doubler(input)
+    print(answer)
+```
+
+# Working with files
+
+```
+from datetime import datetime
+
+log_file = "example.log"
+
+
+def read_log(log):
+    """
+    Open the logfile and print contents to the terminal
+    """
+    with open(log, "r") as f:
+        print(f.read())
+
+
+def write_log(log, name):
+    """
+    Add new logfile entry with datestamp
+    """
+    # Get current date and time
+    log_time = str(datetime.now())
+    with open(log, "a") as f:
+        f.writelines("Entry logged at: {} by {}\n".format(log_time, name))
+
+
+# Entry point for program
+if __name__ == '__main__':
+    # Get users name
+    name = input("What is your name? ")
+
+    # Add entry to log file
+    print("Adding new log entry")
+    write_log(log_file, name)
+    print("")
+
+    # Access Starting Log File
+    print("Log File Contents")
+    print("-----------------")
+    read_log(log_file)
+```
+
 # Dictionaries
 A dictionary is a way of storing related information in key-value pairs. It uses a key as an identifier and a value to store the information. For example, the key could be first_name and the value could be Ada.
 
@@ -100,8 +182,8 @@ Dictionaries can be created by assigning the key-values you want to store in the
 
 Using the python interactive mode, try the following:
 ```
->>> user = {"first_name":"Ada"}
->>> print(user)
+user = {"first_name":"Ada"}
+print(user)
 {'first_name': 'Ada'}
 ```
 or if you are going to be adding the contents of the dictionary later, you can declare an empty dictionary. You can create an empty dictionary in two ways:
@@ -114,13 +196,13 @@ or use the dict() constructor:
 
 account_details = dict()
 
-Read
+# Getting Values from Dictionary
 To read the value associated with a key, you need to provide the name of the dictionary and the the value of the key inside square brackets.
 
-Try the following:
+# Read
 ```
->>> user = {"first_name":"Ada"}
->>> print(user["first_name"])
+user = {"first_name":"Ada"}
+print(user["first_name"])
 Ada
 ```
 # Update
@@ -129,10 +211,9 @@ Dictionaries are mutable, which means they can be changed after you create them.
 
 To add an additional key-value to a dictionary, provide the dictionary name, the new key in [] and a value after an = sign.
 
-Try the following:
 ```
->>>user["family_name"] = "Byron"
->>>print(user)
+user["family_name"] = "Byron"
+print(user)
 {'first_name': 'Ada', 'family_name': 'Byron'}
 ```
 
@@ -151,7 +232,7 @@ To remove a key-value pair you use the del statement with the name of the dictio
 >>> print(user)
 {'first_name': 'Ada'}
 ```
-# FUCTION TO TRANSLATE USING AWS TRANSLATE
+# FUNCTION TO TRANSLATE USING AWS TRANSLATE
 
 ```
 def translate_text(): 
@@ -166,16 +247,6 @@ def translate_text():
 translate_text() # This line will call our function. Without it, python will not do anything.
 
 ```
-# USING MAIN FUNCTION
-When this code is run, the interpreter will define a special variable called __name__ and assign the value of "__main__" to the code in this python file. So the code in our python file becomes __name__ == "__main__".
-
-When we use import statements, we can import code from other files into our python program. When this happens, the imported code is set a __name__ value of the modules name.
-
-By setting the __name__=="__main__" we can control the order in which the code in this file is executed, telling python to run the code in this file which has the name of __main__ rather than the code imported from another file. This avoids situations where your code could run an imported script, resulting in unwanted behavior.
-
-We do this using an if statement. If statements are covered in more detail later. At this stage, all you need to understand is that it is telling the python interpreter that if the __name__ is equal to __main__ which relates to the code in this python file, then run the main() function.
-
-The main() function therefore sets the start point for our code to control the order in which our code executes. It is conventional to include all the calls to your functions within the main() function. This will help others to read your code and understand the logic and flow
 
 ```
 import boto3
