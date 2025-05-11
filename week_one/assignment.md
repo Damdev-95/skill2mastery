@@ -11,10 +11,10 @@
 
 5. Using this [repository](https://github.com/kodekloudhub/learning-app-ecommerce.git) as reference
 
-5a. Use Ubuntu as the Database server:
+ 5a. Use Ubuntu as the Database server:
     Implement all the steps using ansible playbook
 
-6. Use the Centos as the Web Server
+ 5b. Use the Centos as the Web Server
     Implement all the steps using ansible playbook
 
 
