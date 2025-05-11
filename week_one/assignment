@@ -7,11 +7,16 @@
 
 3. Use ansible to create 2 VMs on aws(1 Ubuntu, 1 Centos, 1 windows)
 
-4. Use ansible to create 5 users on the windows server 
+4. Use ansible to create 5 users on the windows server
 
-5. On the Ubuntu server:
-    Use ansible to install mysql , update packages  and create a dataase(name=login_db)
-    Create a database user with password
+5. Using this [repository](https://github.com/kodekloudhub/learning-app-ecommerce.git) as reference
 
-6. On the Centos server
-    Use ansible to install nginx, ensure the nginx is running
+5a. Use Ubuntu as the Database server:
+    Implement all the steps using ansible playbook
+
+6. Use the Centos as the Web Server
+    Implement all the steps using ansible playbook
+
+
+## Submission will be in markdown language include steps, code and snipshots of results
+    
