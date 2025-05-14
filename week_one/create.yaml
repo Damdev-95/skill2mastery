@@ -1,0 +1,31 @@
+---
+- name: Add a user and assign to 'developer' group
+  hosts: 
+  become: yes
+  vars_prompt:
+    - name: "username"
+      prompt: "Enter the username"
+      private: no
+    - name: "password"
+      prompt: "Enter the password"
+      private: yes
+
+  tasks:
+    - name: Ensure 'developer' group exists
+      group:
+        name: developer
+        state: present
+      
+
+    - name: Create user with hashed password and add to 'developer' group
+      user:
+        name: "{{ username }}"
+        groups: developer
+        append: yes
+        state: present
+        password: "{{ password }}"
+        create_home: yes
+
+    - name: Confirm user creation
+      debug:
+        msg: "User '{{ username }}' created and added to 'developer' group."
