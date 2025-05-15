@@ -1,0 +1,108 @@
+---
+
+- name: Provision EC2 instances
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+  vars:
+    aws_region: us-east-1
+    vpc_id: vpc-xxxxxxxx  # Replace with your VPC ID
+    subnet_id: subnet-xxxxxxxx  # Replace with your subnet ID
+    security_group: sg-xxxxxxxx  # Replace with your security group
+    keypair_name: your-existing-keypair  # Replace with your existing keypair name
+    
+    ubuntu_instance:
+      name: ubuntu-server
+      ami: ami-0c7217cdde317cfec  # Ubuntu 22.04 LTS (us-east-1)
+      instance_type: t2.micro
+      
+    centos_instance:
+      name: centos-server
+      ami: ami-002070d43b0a4f171  # CentOS Stream 9 (us-east-1)
+      instance_type: t2.micro
+      
+    windows_instance:
+      name: windows-server
+      ami: ami-0ea626e0a74727d4b  # Windows Server 2022 (us-east-1)
+      instance_type: t3.medium   # Windows needs more resources
+
+  tasks:
+    - name: Create Ubuntu EC2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ ubuntu_instance.name }}"
+        key_name: "{{ keypair_name }}"
+        vpc_subnet_id: "{{ subnet_id }}"
+        security_group: "{{ security_group }}"
+        instance_type: "{{ ubuntu_instance.instance_type }}"
+        image_id: "{{ ubuntu_instance.ami }}"
+        region: "{{ aws_region }}"
+        network:
+          assign_public_ip: true
+        tags:
+          Environment: Development
+          OS: Ubuntu
+        wait: yes
+        state: present
+      register: ubuntu_result
+
+    - name: Create CentOS EC2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ centos_instance.name }}"
+        key_name: "{{ keypair_name }}"
+        vpc_subnet_id: "{{ subnet_id }}"
+        security_group: "{{ security_group }}"
+        instance_type: "{{ centos_instance.instance_type }}"
+        image_id: "{{ centos_instance.ami }}"
+        region: "{{ aws_region }}"
+        network:
+          assign_public_ip: true
+        tags:
+          Environment: Development
+          OS: CentOS
+        wait: yes
+        state: present
+      register: centos_result
+      
+    - name: Create Windows Server EC2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ windows_instance.name }}"
+        key_name: "{{ keypair_name }}"
+        vpc_subnet_id: "{{ subnet_id }}"
+        security_group: "{{ security_group }}"
+        instance_type: "{{ windows_instance.instance_type }}"
+        image_id: "{{ windows_instance.ami }}"
+        region: "{{ aws_region }}"
+        network:
+          assign_public_ip: true
+        tags:
+          Environment: Development
+          OS: Windows
+        wait: yes
+        state: present
+      register: windows_result
+
+    - name: Display Ubuntu instance details
+      debug:
+        msg: |
+          Ubuntu Instance ID: {{ ubuntu_result.instances[0].instance_id }}
+          Public IP: {{ ubuntu_result.instances[0].public_ip_address }}
+          Private IP: {{ ubuntu_result.instances[0].private_ip_address }}
+      when: ubuntu_result.instances is defined and ubuntu_result.instances | length > 0
+
+    - name: Display CentOS instance details
+      debug:
+        msg: |
+          CentOS Instance ID: {{ centos_result.instances[0].instance_id }}
+          Public IP: {{ centos_result.instances[0].public_ip_address }}
+          Private IP: {{ centos_result.instances[0].private_ip_address }}
+      when: centos_result.instances is defined and centos_result.instances | length > 0
+      
+    - name: Display Windows Server instance details
+      debug:
+        msg: |
+          Windows Server Instance ID: {{ windows_result.instances[0].instance_id }}
+          Public IP: {{ windows_result.instances[0].public_ip_address }}
+          Private IP: {{ windows_result.instances[0].private_ip_address }}
+          Administrator Password: Use AWS EC2 console to retrieve the Windows password using your keypair
+      when: windows_result.instances is defined and windows_result.instances | length > 0
