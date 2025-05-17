@@ -79,10 +79,10 @@ sudo yum install -y git
 sudo git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/
 ```
 
-11. Create and configure environmnet variables
-* Change directiry to /var/www/html
+11. Create and configure environment variables
+* Change directory to /var/www/html
 * sudo nano .env
-* paste the elow contents
+* paste the below contents
 
 ```
 DB_HOST=localhost
