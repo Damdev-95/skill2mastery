@@ -17,7 +17,7 @@
         state: present
       
 
-    - name: Create user with hashed password and add to 'developer' group
+    - name: Create user with password and add to 'developer' group
       user:
         name: "{{ username }}"
         groups: developer
