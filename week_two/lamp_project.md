@@ -18,8 +18,7 @@ sudo systemctl status firewalld
 2. Install MariaDB service
 
 ```
-sudo yum install -y mariadb-server
-sudo vi /etc/my.cnf
+sudo dnf install mariadb105-server
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
@@ -81,14 +80,15 @@ sudo git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/w
 ```
 
 11. Create and configure environmnet variables
+* Change directiry to /var/www/html
+* sudo nano .env
+* paste the elow contents
 
 ```
-cat > /var/www/html/.env <<-EOF
 DB_HOST=localhost
 DB_USER=ecomuser
 DB_PASSWORD=ecompassword
 DB_NAME=ecomdb
-EOF
 ```
 12. Update the content on index.php
 
@@ -125,4 +125,4 @@ $dbPassword = getenv('DB_PASSWORD');
 $dbName = getenv('DB_NAME');
 
 ?>
-```
+
