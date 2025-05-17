@@ -5,18 +5,6 @@
 
 2. Implement Q1 using ansible playbook
 
-3. create 3 VMs on aws(1 Ubuntu, 1 Centos, 1 windows) use any preferred way to do it
-
-4. Use ansible to create 5 users on the windows server
-
-5. Using this [repository](https://github.com/kodekloudhub/learning-app-ecommerce.git) as reference
-
- 5a. Use Ubuntu as the Database server:
-    Implement all the steps using ansible playbook
-
- 5b. Use the Centos as the Web Server
-    Implement all the steps using ansible playbook
-
 
 ## Submission will be in markdown language include steps, code and snipshots of results
     
