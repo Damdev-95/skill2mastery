@@ -1,4 +1,3 @@
-* Explain SSH-remote extension
 
 * Dry run
 ansible-playbook -i inventory playbook.yml --check
@@ -26,16 +25,17 @@ ansible-galaxy collection install amazon.aws
 pip3.10 install boto3
 
 
-* Requried packages
-pip install boto3 botocore
 
-* Also ensure aws cli is installed and authenticate
+* Also ensure aws cli is installed and authenticate via  access keys
+
+```
 aws configure
 export AWS_ACCESS_KEY_ID=your_access_key
 export AWS_SECRET_ACCESS_KEY=your_secret_key
 export AWS_REGION=your_region
+```
 
-* Verify installation process
+* Verify installation 
 ansible-doc -t module amazon.aws.ec2_instance
 
 
