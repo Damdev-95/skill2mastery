@@ -18,6 +18,8 @@ ansible-playbook -i inventory playook.yml
 ansible-galaxy collection install amazon.aws
 
 
+
+
 * Confirm the ansible version
  ansible --version
  image.png
