@@ -1,6 +1,0 @@
-- name: Create user
-  hosts: localhost
-  tasks:
-    - name: create user
-      user:
-        
