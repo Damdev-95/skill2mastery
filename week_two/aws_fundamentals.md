@@ -102,6 +102,28 @@ This is the fundamental infastructure on AWS
 * Firewall rules: security group
 * Bootstrap script (configure at first launch): EC2 User Data
 
+# Secuirty Groups
+
+* Can be attached to multiple instances
+* Locked down to a region / VPC combination
+* All inbound traffic is blocked by default
+* All outbound traffic is authorised by default
+* You can easily referenced other security groups
+  
+<img width="1010" alt="image" src="https://github.com/user-attachments/assets/89e4de16-2c00-4087-acfc-f83a29134474" />
+
+# EC2 Instance Options
+
+* On-Demand Instances – short workload, predictable pricing, pay by second
+* Reserved (1 & 3 years)
+* Reserved Instances – long workloads
+* Convertible Reserved Instances – long workloads with flexible instances
+* Savings Plans (1 & 3 years) –commitment to an amount of usage, long workload
+* Spot Instances – short workloads, cheap, can lose instances (less reliable)
+* Dedicated Hosts – book an entire physical server, control instance placement (BYOL – Bring Your Own License)
+* Dedicated Instances – no other customers will share your hardware
+* Capacity Reservations – reserve capacity in a specific AZ for any duration
+
 
 # Network Service
 
@@ -154,10 +176,31 @@ This is the fundamental infastructure on AWS
 * This is very common for web applications / modern applications (kubernetes replicas)
 * High availability means running your application / system in at least 2 Availability Zones
 
-# Vertical Scaling: Increase instance size (scale up / down)
-# Horizontal Scaling: Increase number of instances (scale out / in) ASG & LB
+## Vertical Scaling: Increase instance size (scale up / down)
+## Horizontal Scaling: Increase number of instances (scale out / in) ASG & LB
+
+# Load Balancing
+
+These are servers that forward traffic to downstreams
+Examples: Nginx, HAproxy, Apache2, F5
+
+<img width="934" alt="image" src="https://github.com/user-attachments/assets/c04d8e01-cbf1-4459-909f-a7adac4253f6" />
+
+* Spread load across multiple downstream instances
+* Expose a single point of access (DNS) to your application
+* Seamlessly handle failures of downstream instances
+* Do regular health checks to your instances
+* Provide SSL termination (HTTPS) for your websites
+* High availability across zones
 
 
+# Types
+
+* Application Load Balancer (HTTP / HTTPS only) – Layer 7
+* Network Load Balancer (ultra-high performance, allows for TCP) – Layer 4
+* Gateway Load Balancer – Layer 3
+
+<img width="1114" alt="image" src="https://github.com/user-attachments/assets/94ca6127-1ad2-4c84-9c2f-3a97b8286bd0" />
 
 
 ## S3
@@ -174,4 +217,39 @@ This is the fundamental infastructure on AWS
 * Object values are the content of the body: Max. Object Size is 5TB (5000GB)
 * If uploading more than 5GB, must use “multi-part upload”
 
-# Variations of S3
+
+## Use-cases
+
+```
+Backup and storage
+Disaster Recovery
+Archive
+Hybrid Cloud storage
+Application hosting
+Media hosting
+Data lakes & big data analytics 
+Software delivery & Static website
+```
+
+# S3 Secuirty
+
+* FROM THE INTERNET: S3 Bucket Policy, Public Access
+
+<img width="427" alt="image" src="https://github.com/user-attachments/assets/aa957272-7b03-4ffb-a10e-2a7a50b50cea" />
+
+* IAM user: IAM Permssions
+* EC2 Instanse: IAM Role with IAM permissions
+
+# S3 Static Web-Hosting(Next Class)
+
+# S3 versioning
+* You can version your files in Amazon S3
+* It is enabled at the bucket level
+* Same key overwrite will change the “version”: 1, 2, 3….
+* It is best practice to version your buckets
+* Protect against unintended deletes (ability to restore a version)
+* Easy roll back to previous version 
+
+# Classess of S3
+
+<img width="1032" alt="image" src="https://github.com/user-attachments/assets/9f5e5755-d05e-46da-b980-c48ebc2887a3" />
