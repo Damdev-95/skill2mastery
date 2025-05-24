@@ -5,9 +5,9 @@ You've just been hired as the Cloud Engineer for the Fintech Startup, you've bee
 # Task 1
 
 * Design the VPC CIDR Planning and cover future expansion
-* Production, Development, Staging must be in an isolated Cloud environment
-* Ensure all remote connections to servers is via Bastion-Host
-* Design architecture diagram for an highly and scalable available Web-Application(MERN Stack)
+* Production, Development, Management must be in an isolated Cloud environment
+* Ensure all remote connections to servers is via Bastion-Host (Management VPC)
+* Design architecture diagram for an highly and scalable available Web-Application (Nginx, Linux, React, MySQL)
 * Consider using Europe due to data-privacy and latency
 * Due to starting, average engagement on the application is witin 500 to 1k users
 * Ensure, all services are cost-optimized and secured
