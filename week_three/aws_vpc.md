@@ -31,13 +31,15 @@ Services inside VPC and outside VPC
 
 # Private subnet have route to NAT Gateway, used by Database, App Servers
 
-Each subnet has 5 Reserved IP address;
-#  10.0.1.0/24 
-10.0.1.0 ------Network Address
-10.0.1.1 ------ Gateway Address
-10.0.1.2 ------ DNS IP address
-10.0.1.3 ----- Reserved
-10.0.1.255 ------- Broadcast Address
+Each Subnet has 5 Reserved IP address;
+#  VPC CIDR: 10.0.0.0/16
+# SUBNET CIDR: 10.0.1.0/24
+
+* 10.0.1.0 ------Network Address
+* 10.0.1.1 ------ Gateway Address
+* 10.0.1.2 ------ DNS IP address
+* 10.0.1.3 ----- Reserved
+* 10.0.1.255 ------- Broadcast Address
 
 
 # Network Access Control Lists
@@ -97,21 +99,19 @@ You can add secondary VPC CIDRs to existing VPC
 * You can have total 5 IPv4 Secondary CIDR Block
 
 Primary CIDR: 10.0.0.0/16
-Additional : 10.1.0.0/16 ---- Allowed
-Additional: 192.168.0.0/16 ---- Disallowed(RFC1918)
-Additional : 172.32.0.0./16 ---- Disallowed(RFC1918)
-Additonal: 100.64.0.0/16 -----Allowed(Non-RC1918)
+
+* Additional : 10.1.0.0/16 ---- Allowed
+* Additional: 192.168.0.0/16 ---- Disallowed(RFC1918)
+* Additional : 172.32.0.0./16 ---- Disallowed(RFC1918)
+* Additonal: 100.64.0.0/16 -----Allowed(Non-RC1918)
 
 # Elastic Network Interface
 
 logical component in a VPC that represents a virtual network card, ENIs are bound to a specific availability zone (AZ)
 The ENI can have the following attributes:
-* A primary private IPv4 address from the IPv4 address
-range of the VPC
-* A primary IPv6 address from the IPv6 address range of
-your VPC
-* One or more secondary private IPv4 addresses from the
-IPv4 address range of your VPC
+* A primary private IPv4 address from the IPv4 address range of the VPC
+* A primary IPv6 address from the IPv6 address range of the VPC
+* One or more secondary private IPv4 addresses from the IPv4 address range of the VPC
 * One Elastic IP address (IPv4) per private IPv4 address
 * One public IPv4 address
 * One or more IPv6 addresses
