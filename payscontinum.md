@@ -1,6 +1,6 @@
 ## WELCOME TO A NEW DISPENSATION
 
-You've just been hired as the Cloud Engineer for the Fintech Startup, you've been tasked to design and implement highly-available and scalable infrastructure to support the startegic goals of the company
+You've just been hired as the Cloud Engineer for the Fintech Startup, you've been tasked to design and implement highly-available and scalable infrastructure to support the strategic goals of the company
 
 # Task 1
 
