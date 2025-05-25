@@ -21,8 +21,8 @@ You've just been hired as the Cloud Engineer for the Fintech Startup, you've bee
 
 # CIDR Planning
 
-3rd Octect: Even (Private Subnet)
-3rd Octect: Odd  (Public Subnet
+* 3rd Octect: Even (Private Subnet)
+* 3rd Octect: Odd  (Public Subnet
 
 # Management VPC : 10.0.0.0/16
 
