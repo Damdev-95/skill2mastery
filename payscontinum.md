@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/1443a88e-9644-415d-96c4-0ad3d9900e93)
-
 ## WELCOME TO A NEW DISPENSATION
 
 You've just been hired as the Cloud Engineer for the Fintech Startup, you've been tasked to design and implement highly-available and scalable infrastructure to support the strategic goals of the company
@@ -17,6 +15,9 @@ You've just been hired as the Cloud Engineer for the Fintech Startup, you've bee
 
 
 # Solution(Task 1)
+
+![image](https://github.com/user-attachments/assets/277765bd-47b2-4a7a-aa10-6b56931ffb70)
+
 
 # CIDR Planning
 
@@ -68,7 +69,7 @@ You've just been hired as the Cloud Engineer for the Fintech Startup, you've bee
 
    * VPC peering between Mangemnet and Development VPC
    * VPC Peering between Management and Production VPC
-   * Secuirty Group for Management VPC should allow remote connection(SSH, RDP)
+   * Secuirty Group for Management VPC should allow remote connection via internet (SSH, RDP)
    * Security Group for Development and Production show allow remote access via Managemnet VPC only
 
 
