@@ -77,6 +77,8 @@ fields @timestamp, @message
 
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/335a13b5-5eec-4e3c-ac32-0673471da32a" />
 
+
+
 <img width="610" alt="image" src="https://github.com/user-attachments/assets/c3d1078c-ce70-4af8-b9cb-05660f8ebaa9" />
 
 
