@@ -1,4 +1,4 @@
-## Project Task 3
+## Welcome to Task 3
 
 The recent mangemnet team has instructed the CIO for an informational web page about the company.
 
