@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/92268728-16b3-43e2-ad60-cd4bf4fe036f)## Hosting Static Website using S3
+## Hosting Static Website using S3 with a Custom Domain 
 
 ![image](https://github.com/user-attachments/assets/962b9c9b-a778-49f5-aa18-0a35e41f2a86)
 
@@ -8,9 +8,11 @@ One of the fastest way create a static websites is using S3 bucket.
 
 # Step 1: Create an S3 Bucket
 
+# When using a custom domain name, the name of the bucket should be same as the custom domain
+
 * Go to the AWS S3 Console.
 * Click "Create bucket".
-* Bucket name: Must be globally unique, e.g., my-website-bucket.
+* Bucket name: Must be globally unique, e.g. payments.scontinum.com 
 * Region: Choose your preferred AWS region.
 * Uncheck: “Block all public access” 
 * Click Create Bucket.
@@ -53,7 +55,12 @@ One of the fastest way create a static websites is using S3 bucket.
 }
 ```
 
+# Step 5: Custom Domain name
 
+* Ensure the name of the bucket is same as intended custom domain name
+* Go to Route53 > Hosted Zone
+* Click on your domain **scontinum. com**
+* Create a CNAME recored for the custom domain **payments.scontinum.com** mapped to the s3 bucket website url(remove the http header) 
 
 
 
