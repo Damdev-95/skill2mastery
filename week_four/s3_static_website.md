@@ -62,8 +62,15 @@ One of the fastest way create a static websites is using S3 bucket.
 * Click on your domain **scontinum. com**
 * Create a CNAME recored for the custom domain **payments.scontinum.com** mapped to the s3 bucket website url(remove the http header) 
 
+![image](https://github.com/user-attachments/assets/31a678a6-14b2-404f-ae4a-f27b0a67f65d)
+
+![image](https://github.com/user-attachments/assets/0bafe7ec-1e39-492b-a750-494e5237e3fc)
 
 
+![image](https://github.com/user-attachments/assets/837b1da9-f0c9-4210-a297-71ecd6c79ebe)
+
+
+![image](https://github.com/user-attachments/assets/95df45a6-c584-4aa1-b7c4-790a4fff627f)
 
 
 
