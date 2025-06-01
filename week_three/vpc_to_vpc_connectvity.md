@@ -31,5 +31,3 @@ VPC Peering is a networking connection between two Virtual Private Clouds (VPCs)
 4. Update Security Groups
     * Modify the Security Group rules to allow inbound/outbound traffic from the peer VPC’s CIDR
   
-
-# TRANSIT GATEWAY
