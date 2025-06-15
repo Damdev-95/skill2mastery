@@ -61,6 +61,9 @@ $ cp pki/private/client1.domain.tld.key ~/demo/ $ cd ~/demo
  $ aws acm import-certificate --certificate fileb://server.com.crt --private-key fileb://server.com.key --certificate-chain fileb://ca.crt --region eu-west-1
 $ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --private-key fileb://client1.domain.tld.key --certificate-chain fileb://ca.crt --region eu-west-1
 ```
+
+![image](https://github.com/user-attachments/assets/56b6873e-8cc0-4c8e-a6d8-e8e283aeaac7)
+
 ### Step 2: Create the Client_VPN Subnet in Managemnet VPC
 - Create Client_VPN Subnet 10.0.5.0/24
 - Create Client_VPN Route table and associate subnet
@@ -74,6 +77,9 @@ $ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --priv
   - Authentication type (e.g., certificate-based)
   - Enable split tunnel (optional)
 
+![image](https://github.com/user-attachments/assets/97c6809e-e2a8-420a-af31-c6dc8f8cbe02)
+
+
 ### Step 3: Associate with VPC Subnet
 - Pick a **subnet** in the VPC to associate with the VPN
 - This gives users access to AWS resources in that subnet
@@ -84,7 +90,7 @@ $ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --priv
 ### Step 5: Add a Route
 - Add a route to tell the VPN how to reach AWS resources
   - Example: `Destination = 10.2.0.0/16`, `Target = associated subnet`
-  - Example: `Destination = 0.0.0.0/16`, `Target = associated subnet`
+  - Example: `Destination = 0.0.0.0/0`, `Target = associated subnet`
 
 ### Step 6: Download VPN Configuration
 - Download the `.ovpn` file from AWS
@@ -115,6 +121,9 @@ Open the configuration file with any editor and add following lines
 ---
 
 ![image](https://github.com/user-attachments/assets/5fb8134c-1d4d-4423-bcc8-aeeeca621671)
+
+![image](https://github.com/user-attachments/assets/925dda34-bc00-4913-9207-a11f31feec2b)
+
 
 ![image](https://github.com/user-attachments/assets/17e784b2-c754-49e8-8fb1-dd9ae5e3d04a)
 
