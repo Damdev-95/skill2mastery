@@ -10,7 +10,7 @@ This guide sets up a secure static website using:
 
 ##  Step 1: Create an S3 Bucket
 
-![image](https://github.com/user-attachments/assets/6ef0ae0a-82c3-4ce8-8656-8f64ea7be643)
+![image](https://github.com/user-attachments/assets/51bc4ffe-f5fb-4d52-abcd-a6af16b923b0)
 
 
 
