@@ -71,7 +71,7 @@ sudo dnf update
 sudo dnf install libreswan -y
 ```
 
-```json
+```bash
 1) Open /etc/sysctl.conf and ensure that its values match the following:
    net.ipv4.ip_forward = 1
    net.ipv4.conf.default.rp_filter = 0
@@ -109,8 +109,19 @@ conn Tunnel1
 184.169.202.130 34.251.2.200: PSK "EArdpMtGK7i09RxrVassXBmReNcMvkRY"
 ```
 
-![image](https://github.com/user-attachments/assets/e591d057-f7e8-49d6-bba6-0edd43d9f688)
+##  5. Confirm the ipsec service is running 
 
+`sudo systenctl status ipsec.service`
+
+![image](https://github.com/user-attachments/assets/89d4465a-90ac-4bde-9734-c22d7e960291)
+
+`sudo ipsec status`
+
+![image](https://github.com/user-attachments/assets/e2457e8a-44ad-4138-8218-aa313b8c1145)
+
+##  6. Validating VPN Connection is up on AWs Console
+
+![image](https://github.com/user-attachments/assets/e591d057-f7e8-49d6-bba6-0edd43d9f688)
 
 ![image](https://github.com/user-attachments/assets/59c39cd0-5aef-4ce5-860d-872bb295b614)
 
