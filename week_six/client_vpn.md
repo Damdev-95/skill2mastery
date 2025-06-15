@@ -6,6 +6,7 @@ AWS Client VPN is a **secure and fully managed VPN service** that lets users (li
 <img width="665" alt="image" src="https://github.com/user-attachments/assets/6c7e4c05-cef4-4745-8295-98434c4e878f" />
 
 
+
 ---
 
 ##  Significance
@@ -19,6 +20,7 @@ AWS Client VPN is a **secure and fully managed VPN service** that lets users (li
 
 ##  Key Components
 
+- **VPN Target Subnet** – Dedicated Subnet for VPN
 - **Client VPN Endpoint** – The VPN gateway in AWS
 - **Client CIDR Range** – IPs given to connected users
 - **Authentication Method** – Use certificates, IAM, or Directory Service
@@ -32,6 +34,26 @@ AWS Client VPN is a **secure and fully managed VPN service** that lets users (li
 ### Step 1: Create a Server Certificate in ACM
 - Upload a server certificate using AWS Certificate Manager
 - Needed for VPN encryption (TLS)
+
+```
+1. Clone the easy-rsa repo
+ git clone https://github.com/OpenVPN/easy-rsa.git $ cd easy-rsa/easyrsa3
+2. Initialize PKI environment
+ ./easyrsa init-pki
+3. Create new Certification Authority (CA)
+ ./easyrsa build-ca nopass
+4. Generate the server certificate and key
+ ./easyrsa build-server-full server nopass
+5. Generate the client certificate and key
+$ ./easyrsa build-client-full client1.domain.tld nopass
+6. Copy server and client certificates and keys to one directory
+$ mkdir ~/demo
+$ cp pki/ca.crt ~/demo/
+$ cp pki/issued/server.crt ~/demo/
+$ cp pki/private/server.key ~/demo/
+$ cp pki/issued/client1.domain.tld.crt ~/demo/
+$ cp pki/private/client1.domain.tld.key ~/demo/ $ cd ~/demo
+```
 
 ### Step 2: Create the VPN Endpoint
 - Go to **VPC > Client VPN Endpoints**
