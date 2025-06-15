@@ -92,6 +92,8 @@ $ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --priv
   - Example: `Destination = 10.2.0.0/16`, `Target = associated subnet`
   - Example: `Destination = 0.0.0.0/0`, `Target = associated subnet`
 
+![image](https://github.com/user-attachments/assets/5fb8134c-1d4d-4423-bcc8-aeeeca621671)
+
 ### Step 6: Download VPN Configuration
 - Download the `.ovpn` file from AWS
 - Send it to users to import in OpenVPN client
@@ -119,8 +121,6 @@ Open the configuration file with any editor and add following lines
 - Hybrid cloud access
 
 ---
-
-![image](https://github.com/user-attachments/assets/5fb8134c-1d4d-4423-bcc8-aeeeca621671)
 
 ![image](https://github.com/user-attachments/assets/925dda34-bc00-4913-9207-a11f31feec2b)
 
