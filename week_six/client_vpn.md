@@ -37,7 +37,8 @@ AWS Client VPN is a **secure and fully managed VPN service** that lets users (li
 
 ```
 1. Clone the easy-rsa repo
- git clone https://github.com/OpenVPN/easy-rsa.git $ cd easy-rsa/easyrsa3
+ git clone https://github.com/OpenVPN/easy-rsa.git
+ cd easy-rsa/easyrsa3
 2. Initialize PKI environment
  ./easyrsa init-pki
 3. Create new Certification Authority (CA)
@@ -55,7 +56,18 @@ $ cp pki/issued/client1.domain.tld.crt ~/demo/
 $ cp pki/private/client1.domain.tld.key ~/demo/ $ cd ~/demo
 ```
 
-### Step 2: Create the VPN Endpoint
+```
+ Upload the certificate and keys to ACM
+ $ aws acm import-certificate --certificate fileb://server.crt --private-key fileb://server.key --certificate-chain fileb://ca.crt --region eu-west-1
+$ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --private-key fileb://client1.domain.tld.key --certificate-chain
+fileb://ca.crt --region eu-west-1
+```
+### Step 2: Create the Client_VPN Subnet in Mnagemnet VPC
+- Create Client_VPN Subnet 10.0.5.0/24
+- Create Client_VPN Route table and associate subnet
+- Create Client_VPN Security Group
+
+### Step 3: Create the VPN Endpoint
 - Go to **VPC > Client VPN Endpoints**
 - Set:
   - CIDR range (e.g., `10.10.0.0/22`)
