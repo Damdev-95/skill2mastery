@@ -90,6 +90,11 @@ fileb://ca.crt --region eu-west-1
 - Download the `.ovpn` file from AWS
 - Send it to users to import in OpenVPN client
 
+```
+Open the configuration file with any editor and add following lines
+1. cert /path/to/client1.domain.tld.crt
+2. key /path/to/client1.domain.tld.key
+```
 ---
 
 ##  Authentication Options
