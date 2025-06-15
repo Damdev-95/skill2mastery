@@ -44,25 +44,24 @@ AWS Client VPN is a **secure and fully managed VPN service** that lets users (li
 3. Create new Certification Authority (CA)
  ./easyrsa build-ca nopass
 4. Generate the server certificate and key
- ./easyrsa build-server-full server nopass
+ ./easyrsa build-server-full server.com nopass
 5. Generate the client certificate and key
 $ ./easyrsa build-client-full client1.domain.tld nopass
 6. Copy server and client certificates and keys to one directory
 $ mkdir ~/demo
 $ cp pki/ca.crt ~/demo/
-$ cp pki/issued/server.crt ~/demo/
-$ cp pki/private/server.key ~/demo/
+$ cp pki/issued/server.com.crt ~/demo/
+$ cp pki/private/server.com.key ~/demo/
 $ cp pki/issued/client1.domain.tld.crt ~/demo/
 $ cp pki/private/client1.domain.tld.key ~/demo/ $ cd ~/demo
 ```
 
 ```
  Upload the certificate and keys to ACM
- $ aws acm import-certificate --certificate fileb://server.crt --private-key fileb://server.key --certificate-chain fileb://ca.crt --region eu-west-1
-$ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --private-key fileb://client1.domain.tld.key --certificate-chain
-fileb://ca.crt --region eu-west-1
+ $ aws acm import-certificate --certificate fileb://server.com.crt --private-key fileb://server.com.key --certificate-chain fileb://ca.crt --region eu-west-1
+$ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --private-key fileb://client1.domain.tld.key --certificate-chain fileb://ca.crt --region eu-west-1
 ```
-### Step 2: Create the Client_VPN Subnet in Mnagemnet VPC
+### Step 2: Create the Client_VPN Subnet in Managemnet VPC
 - Create Client_VPN Subnet 10.0.5.0/24
 - Create Client_VPN Route table and associate subnet
 - Create Client_VPN Security Group
@@ -85,6 +84,7 @@ fileb://ca.crt --region eu-west-1
 ### Step 5: Add a Route
 - Add a route to tell the VPN how to reach AWS resources
   - Example: `Destination = 10.2.0.0/16`, `Target = associated subnet`
+  - Example: `Destination = 0.0.0.0/16`, `Target = associated subnet`
 
 ### Step 6: Download VPN Configuration
 - Download the `.ovpn` file from AWS
@@ -113,5 +113,10 @@ Open the configuration file with any editor and add following lines
 - Hybrid cloud access
 
 ---
+
+![image](https://github.com/user-attachments/assets/5fb8134c-1d4d-4423-bcc8-aeeeca621671)
+
+![image](https://github.com/user-attachments/assets/17e784b2-c754-49e8-8fb1-dd9ae5e3d04a)
+
 
 
