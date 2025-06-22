@@ -1,4 +1,4 @@
-# Project 6 – Solving Connectivity Challenges with Smarter Network Design
+# Project 6 
 
 In response to evolving **business needs**, our teams across **Development**, **Management**, and the **Corporate Data Center (DC)** require seamless, secure communication. As operations scaled and cloud environments matured, it became clear that a more robust network architecture was essential.
 
