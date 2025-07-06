@@ -1,4 +1,4 @@
-# 🐳Dockerfile Guide with Practical Implementation & Environment Variables
+# Dockerfile Guide & Environment Variables
 
 ##  What is a Dockerfile?
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
 # Create DockerFile
 
-```
+```dockerfile
 # 1. Use official Python base image
 FROM python:3.10-slim
 
@@ -108,7 +108,7 @@ static-website/
 ├── index.html
 └── Dockerfile
 
-```
+```dockerfile
 # Use official nginx base image
 FROM nginx:alpine
 
@@ -136,7 +136,7 @@ EXPOSE 80
 
 ## Examples with Variables for database connection
 
-```
+```dockerfile
 FROM python:3.10
 WORKDIR /app
 COPY . .
@@ -149,6 +149,7 @@ CMD ["python", "app.py"]
 
 ```
 
+# Create the app.py
 ```
 import os
 
