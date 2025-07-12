@@ -50,3 +50,29 @@ provider "aws" {
 
 Usually for cli users, the path is available at /home/.aws/credentials
 
+# To make it interesting, create a profile and edit the ~/.aws/credentials 
+
+```bash
+[terraform]
+aws_access_key_id=AKIA1234567890
+aws_secret_access_key=u3nyn5nz9ams38yvekr2
+```
+
+# provider.tf
+
+```hcl
+terraform {
+    required_providers {
+      aws = {
+        source = "hashicorp/aws"
+        version = "~> 4.0.0"
+      }
+    }
+}
+
+provider "aws" {
+    region = "us-east-1"
+    profile= terraform
+}
+```
+
