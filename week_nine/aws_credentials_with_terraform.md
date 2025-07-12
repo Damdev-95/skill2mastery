@@ -1,5 +1,57 @@
 ## How to authenticate with Terraform using AWS
 
+# Firstly, How to install AWS CLI on ubuntu 
+
+```bash
+
+# 1. Update your system
+sudo apt update -y
+
+# 2. Install unzip & curl (if not already installed)
+sudo apt install unzip curl -y
+
+# 3. Download the AWS CLI v2 installer
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+# 4. Unzip the installer
+unzip awscliv2.zip
+
+# 5. Run the installer
+sudo ./aws/install
+
+# 6. Check the installation
+aws --version
+```
+
+## The issue we had in class 😩😩😩
+
+<img width="1288" height="335" alt="image" src="https://github.com/user-attachments/assets/c27435dd-d405-4ffb-9a5d-aa2c40da9f28" />
+
+Ideally, the binary file should bbe located in 
+
+`/usr/local/bin/aws `
+
+But we can't find it there, the binary installer was found at 
+
+`/usr/local/aws-cli/v2/current/bin/aws`
+
+## How do we resolve
+
+```bash
+nano ~/.bashrc
+
+# Add this line
+export PATH=$PATH:/usr/local/aws-cli/v2/current/bin
+
+# save the file and run this on terminal
+source ~/.bashrc
+```
+
+
+
+
+## Let's go to the real deal 
+
 We have three ways to authenticate terraform using AWS
 
 Approach #1: Embed credentials directly into the Terraform template file
