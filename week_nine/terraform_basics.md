@@ -45,13 +45,6 @@
 
 
 
-
-
-
-
-
-
-
 ## Installing Terraform: A Simple Setup
 Getting Terraform up and running is like setting up a new smartphone – it's straightforward and doesn't take much time. 
 Here's a step-by-step guide to installing Terraform:
@@ -63,3 +56,117 @@ Here's a step-by-step guide to installing Terraform:
 - Run the command terraform init in the directory where your main configuration file is located. This will initialize your Terraform working directory and download any necessary plugins.
 - Once initialization is complete, run the command terraform plan to see a preview of the changes that will be made to your infrastructure.
 - Finally, run the command terraform apply to apply the changes to your infrastructure.
+
+## Components of Terraform
+
+# Providers
+
+Providers are plugins for Terraform that define which cloud or service platform you're working with
+
+<img width="787" height="481" alt="image" src="https://github.com/user-attachments/assets/a452eaa0-4a8a-47d1-a4d9-8f3756f4ca0d" />
+
+# Variables 
+
+Terraform variables are used to parameterize your configuration.
+
+```hcl
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-east-1"
+}
+
+```
+# Reference structure
+
+```hcl
+provider "aws" {
+  region = var.region
+}
+
+```
+
+
+# Resouce 
+
+<img width="562" height="207" alt="image" src="https://github.com/user-attachments/assets/f4ed195a-e58b-4f4f-b700-7073a7773579" />
+
+<img width="557" height="190" alt="image" src="https://github.com/user-attachments/assets/0a2e535f-8456-4790-beb2-8c51147da80a" />
+
+<img width="1119" height="578" alt="image" src="https://github.com/user-attachments/assets/cc1e327c-1926-43c1-a1fc-5d5319642ab0" />
+
+
+
+# Data Sources
+
+Data sources allow Terraform to read information from outside Terraform-managed infrastructure (e.g., existing AWS resources).
+
+```hcl
+data "aws_ami" "latest_amazon_linux" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+
+  owners = ["amazon"]
+}
+
+```
+
+```hcl
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+```
+
+# Outputs
+
+Outputs display information after Terraform execution, such as IPs, resource IDs, or config values.
+
+```hcl
+output "bucket_name" {
+  description = "The name of the S3 bucket"
+  value       = aws_s3_bucket.my_bucket.bucket
+}
+```
+
+
+
+## Combine together
+
+```hcl
+provider "aws" {
+  region = var.region
+}
+
+variable "region" {
+  default = "us-east-1"
+}
+
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+  owners = ["amazon"]
+}
+
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "WebInstance"
+  }
+}
+
+output "instance_id" {
+  value = aws_instance.web.id
+}
+
+```
