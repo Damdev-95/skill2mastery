@@ -46,6 +46,9 @@ export PATH=$PATH:/usr/local/aws-cli/v2/current/bin
 # save the file and run this on terminal
 source ~/.bashrc
 ```
+## Yeah, we are good to go 😎😎😎
+
+<img width="964" height="71" alt="image" src="https://github.com/user-attachments/assets/f887e875-9849-4429-8193-9b95e8ce4e2a" />
 
 
 
