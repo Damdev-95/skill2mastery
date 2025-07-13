@@ -31,6 +31,7 @@ project/
         ├── variables.tf
         └── outputs.tf
 
+```
 # Creating an ec2 module: modules/ec2/main.tf
 
 ```
@@ -41,6 +42,7 @@ resource "aws_instance" "web_server" {
     Name = var.name
   }
 }
+
 ```
 
 # Varaibles : modules/ec2/variables.tf
