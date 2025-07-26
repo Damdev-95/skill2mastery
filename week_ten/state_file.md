@@ -137,4 +137,25 @@ terraform state mv <source> <destination>
 
 # Pull current state and display
 terraform state pull
+
 ```
+## Actions 
+
+<img width="1001" height="514" alt="image" src="https://github.com/user-attachments/assets/3780c017-696c-46ed-a90f-64d5dbfba48c" />
+
+<img width="1563" height="666" alt="image" src="https://github.com/user-attachments/assets/f32f4705-3331-4398-839d-e240748d1eaf" />
+
+<img width="1567" height="666" alt="image" src="https://github.com/user-attachments/assets/5c575215-8388-4e31-9c3e-ab74a44e4f8a" />
+
+<img width="636" height="208" alt="image" src="https://github.com/user-attachments/assets/b22bfa2c-bb76-4b5c-b12a-eb0789531064" />
+
+<img width="1434" height="675" alt="image" src="https://github.com/user-attachments/assets/f661c18c-695a-403b-8387-f5654ff7da0e" />
+
+<img width="1435" height="583" alt="image" src="https://github.com/user-attachments/assets/5b22c415-fea2-44d7-8b14-5b3926909fc6" />
+
+
+
+
+
+
+##
