@@ -9,7 +9,7 @@ After confirm version using `git --version`
 
 Use the following commands to configure yur details on git, this will be associated to your git history
 ```
-git config --global user.name "suliaman olubiyi"
+git config --global user.name "sulaiman_olubiyi"
 git config --global user.email "scontinum@gmail.com"
 ```
 Git stores information in this structure;
@@ -17,6 +17,24 @@ Git stores information in this structure;
 Local: /.git/config – Repository-specific settings.
 Global: /.gitconfig – User-specific settings. This is where options set with the --global flag are stored.
 ```
+
+# Authentication Workflow
+Using SSH keys to ensure secure connection to remote origin, some organization use SS0 (Azure AD, or OAuth)
+
+```bash
+ssh-keygen -t ed25519 -C "your_email"
+cat ~/.ssh/id_ed25519.pub
+
+# Paste the key and add to SSH keys settings on github
+# Set the remote origin repository
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+
+# Check the remote list
+git remote -v
+```
+
+
+
 
 Git has 3 internal structure or trees
 1. Working Directory: This tree is in sync with the local filesystem and is representative of the immediate changes made to content in files and directories.
