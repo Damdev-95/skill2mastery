@@ -38,6 +38,10 @@ config_key.pub
 - copy the Public Key to your Target Ubuntu Servers
 need to copy the contents of your newly generated public key (config_key.pub) to the ~/.ssh/authorized_keys file of the user on your target servers 
 ssh-copy-id -i config_key.pub server_username@server-ip
+
+- if using multipass setup, use below commad
+cat config_key.pub | multipass exec <instance_name> -- bash -c "cat >> ~/.ssh/authorized_keys"
+
 - Test connectivity using ansible
 for ubuntu
 ansible -i servers.ini all -m ping
