@@ -15,9 +15,9 @@ This is useful for hybrid cloud setups, disaster recovery, or securely extending
 ![image](https://github.com/user-attachments/assets/17c2aa5c-7512-46a8-a5ef-308abe7eec38)
 
 
-#  AWS Site-to-Site VPN with Libreswan
+#  AWS Site-to-Site VPN with Strongswan
 
-Use **Libreswan** (an open-source IPsec VPN solution) to create a secure **site-to-site VPN** connection between the **on-premises network** or **Linux instance** and an **AWS VPC**.
+Use **Strongswan** (an open-source IPsec VPN solution) to create a secure **site-to-site VPN** connection between the **on-premises network** or **Linux instance** and an **AWS VPC**.
 
 ---
 
@@ -42,11 +42,11 @@ Use **Libreswan** (an open-source IPsec VPN solution) to create a secure **site-
 
 ---
 
-##  Steps to Configure Libreswan
+##  Steps to Configure Strongswan
 
 ###  1. Create Customer Gateway in AWS
 - Go to **VPC Console** > **Customer Gateways**
-- Choose **Static IP** (your Libreswan public IP)
+- Choose **Static IP** (your Strongswan public IP)
 - Set routing type (usually static)
 
 ###  2. Create Virtual Private Gateway
@@ -62,62 +62,100 @@ Use **Libreswan** (an open-source IPsec VPN solution) to create a secure **site-
 
 ---
 
-##  4. Configure Libreswan on Linux (e.g., Ubuntu/EC2)
+##  4. Configure Strongswan on Linux (e.g., Ubuntu/EC2)
 
-Install Libreswan:
-
-```bash
-sudo dnf update
-sudo dnf install libreswan -y
-```
+1. Update package dependencies:
 
 ```bash
-1) Open /etc/sysctl.conf and ensure that its values match the following:
-   net.ipv4.ip_forward = 1
-   net.ipv4.conf.default.rp_filter = 0
-   net.ipv4.conf.default.accept_source_route = 0
+sudo apt update
+sudo apt update && sudo apt upgrade -y
+```
+2. Enable system forwardimg on linux
 
-2) Apply the changes in step 1 by executing the command 'sysctl -p'
+```bash
+sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
 
-3) Open /etc/ipsec.conf and look for the line below. Ensure that the # in front of the line has been removed, then save and exit the file.
-    #include /etc/ipsec.d/*.conf
-
-4) Create a new file at /etc/ipsec.d/aws.conf if doesn't already exist, and then open it. Append the following configuration to the end in the file:
- #leftsubnet= is the local network behind your openswan server, and you will need to replace the <LOCAL NETWORK> below with this value (don't include the brackets). If you have multiple subnets, you can use 0.0.0.0/0 instead.
- #rightsubnet= is the remote network on the other side of your VPN tunnel that you wish to have connectivity with, and you will need to replace <REMOTE NETWORK> with this value (don't include brackets).
-
-conn Tunnel1
-	authby=secret
-	auto=start
-	left=%defaultroute
-	leftid=184.169.202.130
-	right=34.251.2.200
-	type=tunnel
-	ikelifetime=8h
-	keylife=1h
-	phase2alg=aes256-sha1;modp2048
-	ike=aes256-sha1;modp2048
-	keyingtries=%forever
-	keyexchange=ike
-	leftsubnet=172.31.0.0/16
-	rightsubnet=10.2.0.0/16
-	dpddelay=10
-	dpdtimeout=30
-	dpdaction=restart_by_peer
-
-5) Create a new file at /etc/ipsec.d/aws.secrets if it doesn't already exist, and append this line to the file (be mindful of the spacing!):
-184.169.202.130 34.251.2.200: PSK "EArdpMtGK7i09RxrVassXBmReNcMvkRY"
+#save the file and enable it below using
+sudo sysctl -p
 ```
 
-##  5. Confirm the ipsec service is running 
+3. Install Strongswan service
 
-`sudo systenctl status ipsec.service`
+```bash
+sudo apt install strongswan strongswan-pki libcharon-extra-plugins libcharon-extauth-plugins libstrongswan-extra-plugins libtss2-tcti-tabrmd0 -
+```
+4. Start and enabled the service after installation
 
-![image](https://github.com/user-attachments/assets/89d4465a-90ac-4bde-9734-c22d7e960291)
+```bash
+sudo systemctl enable strongswan-starter
+sudo systemctl is-enabled strongswan-starter
+```
+5.  Check for the service status
 
-`sudo ipsec status`
+<img width="1897" height="532" alt="image" src="https://github.com/user-attachments/assets/7679e5d3-ea92-4d86-9184-7fd496b115c9" />
 
-![image](https://github.com/user-attachments/assets/e2457e8a-44ad-4138-8218-aa313b8c1145)
+6.  Edit and configure secrets file on /etc/ipsec.secrets
+
+```bash
+18.237.1.177 34.254.32.247 : PSK "1LYE5ngs6dHGehVjKo4bCXMmPtQRS.mM"
+```
+
+7.  Edit and configure configuration file on /etc/ipsec.conf
+
+```bash
+config setup
+        charondebug="all"
+        uniqueids=yes
+conn corp-dev
+        type=tunnel
+        auto=start
+        keyexchange=ikev2
+        authby=secret
+        left=%defaultroute
+        leftid=18.237.1.177
+        leftsubnet=172.31.0.0/16
+        right=34.254.32.247
+        rightsubnet=10.2.0.0/16
+        ike=aes256-sha256-modp2048!
+        esp=aes256-sha256-modp2048!
+        aggressive=no
+        keyingtries=%forever
+        ikelifetime=28800s
+        lifetime=3600s
+        dpddelay=30s
+        dpdtimeout=120s
+        dpdaction=restart
+```
+
+8.  Start up the connection by using the command
+`sudo ipsec up corp-dev`   #corp-dev is the connection name on the conf file
+
+<img width="1692" height="512" alt="image" src="https://github.com/user-attachments/assets/cf500cb5-aa6c-4ff7-8fe3-8c4d9295895d" />
+
+9.  For toubleshooting or logs, you can use the following
+
+```bash
+sudo tail -n 15 /var/log/syslog | grep -E "charon|secrets"
+systemctl status strongswan-starter
+
+```
+
+
+
+##   Confirm the ipsec service is running 
+
+`sudo systemctl status ipsec.service`
+
+`sudo ipsec up`
+
+<img width="1427" height="491" alt="image" src="https://github.com/user-attachments/assets/a4e6f1c7-f011-4a7a-91e3-f446b7d17bc1" />
+
+
+
 
 ##  6. Validating VPN Connection is up on AWs Console
 
